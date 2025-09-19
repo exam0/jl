@@ -278,3 +278,214 @@ catch(Exception e)
 {e.printStackTrace();}
  }
 }
+
+
+7
+
+ Ex.No:7 OPERATIONS ON VECTOR 
+import java.util.*; 
+public class VectorTest 
+{
+public static void main(String args[]) 
+{
+Vector <String> v = new Vector <String>(4,2); 
+ v.add("tiger"); 
+ v.add("lion"); 
+ v.add("dog"); 
+ v.add("elephant"); 
+System.out.println("size of the vector is : " +v.size()); 
+System.out.println("vector element is : "+v.capacity()); 
+System.out.println("vector elements is : " +v); 
+Vector v1 = new Vector(1,1); 
+v1.addElement("rat"); 
+v1.addElement("cat"); 
+v1.addElement("deer"); 
+ v.addAll(v1); 
+System.out.println("size after addition : "+v.size()); 
+System.out.println("Capacity after addition : " +v.capacity()); 
+ System.out.println("Elements are : "+v); 
+if(v.contains("tiger")) 
+{
+System.out.println("tiger is present the index : " +v.indexOf("tiger")); 
+}
+else 
+{
+System.out.println("tiger is not present in index"); 
+}
+System.out.println("the firstelements in vector is : "+v.firstElement()); 
+System.out.println("the last elements in vector is : " +v.lastElement()); 
+}
+}
+
+8.
+
+
+import java.io.*; import java.util.*; 
+class ArrayListTest 
+{
+public static void main(String args[])throws Exception 
+{
+ArrayList a = newArrayList(); 
+System.out.println("initial size of arraylist : "+a.size()); 
+ a.add(new Integer(10)); 
+a.add(new Integer(30)); 
+ a.add(new Integer(50)); 
+a.add(new Integer(70)); 
+a.add(new Integer(80)); 
+System.out.println("\n elements in the arraylist \n "+a); 
+Object x[] = a.toArray(); 
+int sum =0; 
+for (int i =0;i<x.length;i++) 
+sum+=((Integer)x[i]).intValue(); 
+System.out.println("\n sum of arrylistelements : "+sum); 
+ System.out.print("\nelementsinreverse order ["); 
+for(int i =x.length-1;i>=0;i--) 
+System.out.print(x[i]+" "); 
+System.out.print("]"); 
+}
+}
+
+9.
+
+ import java.io.*; 
+class SeqenceInputStream 
+{
+public static void main(String args[])throws Exception 
+{
+FileInputStream input1 =new FileInputStream("D:\\22PCS100\\First.txt"); 
+FileInputStream input2=new FileInputStream("D:\\22PCS100\\Second.txt"); 
+FileOutputStream output =new FileOutputStream("D:\\22PCS100\\merged.txt"); 
+SequenceInputStreaminst = new SequenceInputStream(input1,input2); 
+int j; while((j=inst.read())!=-1) 
+{ 
+ System.out.print((char)j); 
+ output.write(j); 
+ } 
+System.out.println(“Files Merged..”);
+inst.close(); 
+input1.close(); 
+ input2.close(); 
+output.close(); 
+}
+}
+
+
+10.
+
+ import java.net.*; 
+import java.io.*; 
+public class TCPClient 
+{ 
+ public static void main(String arg[]) 
+{ 
+ try 
+ { 
+ Socket s= new Socket("localhost",9000); 
+ System.out.println("Connected with server"); 
+ OutputStream out= s.getOutputStream(); 
+ PrintStream ps=new PrintStream(out,true); 
+ ps.println("Hello M.Sc Students How are You ? "); 
+ 
+ System.out.println("Your data has been sent successfully"); 
+ ps.close(); 
+ out.close(); 
+ s.close(); 
+} 
+catch(Exception e) 
+{ System.out.println(e); } 
+} 
+} 
+import java.net.*; 
+import java.io.*; 
+public class TCPServer 
+{ 
+ public static void main(String args[]) 
+{ 
+ try 
+{ 
+ ServerSocket ss = new ServerSocket (9000); 
+ System.out.println("Server is ready and listening port # 9000"); 
+ Socket s= ss.accept() ; 
+ System.out.println("Connected with client"); 
+ InputStream in = s.getInputStream(); 
+ BufferedReader bin = new BufferedReader( new InputStreamReader(in)); 
+ System.out.println("Message from client :" + bin.readLine()); 
+ s.close(); 
+ ss.close(); 
+} 
+catch(Exception e) 
+{ System.out.println(e); } 
+} 
+} 
+
+
+11.
+
+ import java.awt.*; 
+import java.awt.event.*; 
+import javax.swing.*; 
+public class SwingControlDemo extends JFrame implements ActionListener 
+{ 
+ JLabel L1; 
+ JLabel L2; 
+ JPanel P1; 
+ JButton b1,b2,b3; 
+ Container con; 
+ Font f; 
+ public SwingControlDemo() 
+ { 
+ super("Java SWING Examples"); 
+ setSize(400,400); 
+ con = getContentPane(); 
+ f = new Font("Verdana", Font.BOLD, 30); 
+ setLayout(new GridLayout(3, 1)); 
+ L1 = new JLabel("",JLabel.CENTER ); 
+ L2 = new JLabel("",JLabel.CENTER); 
+ L1.setFont(f); 
+ L2.setForeground(Color.cyan); 
+ L2.setFont(f); 
+ L2.setSize(350,100); 
+ P1 = new JPanel(); 
+ P1.setLayout(new FlowLayout()); 
+ add(L1); 
+ add(L2); 
+ add(P1); 
+ L1.setText(""); 
+ b1 = new JButton("RED"); 
+ b2 = new JButton("BLUE"); 
+ b3 = new JButton("GREEN"); 
+ b1.setActionCommand("RED"); 
+ b2.setActionCommand("BLUE"); 
+ b3.setActionCommand("GREEN"); 
+ b1.addActionListener(this); 
+ b2.addActionListener(this); 
+ b3.addActionListener(this); 
+ P1.add(b1); 
+ P1.add(b2); 
+ P1.add(b3); 
+ setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+ setVisible(true); 
+ } 
+public void actionPerformed(ActionEvent e) 
+ { 
+ String command = e.getActionCommand(); 
+ if( command.equals( "RED" )) 
+ { 
+ con.setBackground(Color.RED); 
+ L2.setText("RED Button clicked."); 
+ } 
+ else if( command.equals( "BLUE" ) ) 
+ { 
+ con.setBackground(Color.BLUE); 
+ L2.setText("BLUE Button clicked."); 
+ } 
+ else { 
+ con.setBackground(Color.GREEN); 
+ L2.setText("GREEN Button clicked."); 
+ } 
+ } 
+ public static void main(String[] args) 
+ { 
+ SwingControlDemo obj = new SwingControlDemo(); 
+ } 
+} 
